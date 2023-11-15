@@ -1,0 +1,84 @@
+# Class October 24th
+
+## Mutation
+
+```elixir
+defmodule M do
+  def f(x) do
+    2 * x
+  end
+end
+```
+
+```elixir
+x = 30
+```
+
+```elixir
+M.f(x)
+```
+
+```elixir
+x
+```
+
+```elixir
+x = 1000
+```
+
+```elixir
+M.f(x)
+```
+
+```elixir
+x = M.f(x)
+```
+
+```elixir
+x
+```
+
+```elixir
+IO.puts("1200")
+2300
+```
+
+```elixir
+even = Enum.to_list(10..50//2)
+```
+
+```elixir
+newList = List.replace_at(even, 2, 13)
+```
+
+```elixir
+even
+```
+
+```elixir
+defmodule Math do
+  # def smallest_largest(list) do
+  #   smallest = Enum.min(list)
+  #   largest = Enum.max(list)
+  #   {smallest, largest}
+  # end
+
+  def smallest_largest([head | tail]), do: smallest_largest(tail, head, head)
+  def smallest_largest(_), do: {:error, "Input must be a non-empty list"}
+  def smallest_largest([], smallest, largest), do: {smallest, largest}
+
+  def smallest_largest([head | tail], smallest, largest) do
+    new_smallest = if head < smallest, do: head, else: smallest
+    new_largest = if head > largest, do: head, else: largest
+    smallest_largest(tail, new_smallest, new_largest)
+  end
+end
+```
+
+```elixir
+list = Enum.to_list(11..5_000_001//2)
+```
+
+```elixir
+Math.smallest_largest(list)
+```

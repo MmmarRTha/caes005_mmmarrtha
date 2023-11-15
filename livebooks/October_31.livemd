@@ -1,0 +1,100 @@
+# October 31st, class 4
+
+## Fibonacci
+
+```elixir
+defmodule Fibonacci do
+  # def calc(0), do: 0
+  # def calc(1), do: 1
+
+  # def calc(n) when n > 1 do
+  #   calc(n - 1) + calc(n - 2)
+  # end
+
+  def find(nth) do
+    list = [1, 1]
+    fib(list, nth)
+  end
+
+  defp fib(list, 2) do
+    Enum.reverse(list)
+  end
+
+  defp fib(list, n) do
+    [first_element, second_element | _rest] = list
+    fib([first_element + second_element | list], n - 1)
+  end
+
+  def nth_v2(n) do
+    find(n)
+    |> Enum.reverse()
+    |> hd()
+  end
+end
+```
+
+```elixir
+Fibonacci.find(2000)
+```
+
+```elixir
+Fibonacci.nth_v2(2000)
+```
+
+```elixir
+defmodule HeronMethod do
+  def sqrt(n, error \\ 1.0e-10) do
+    sqrt(n, error, 1.0, 0.5 * (1 + n))
+  end
+
+  defp sqrt(n, error, prev, new) when abs(new - prev) > error do
+    sqrt(n, error, new, 0.5 * (new + n / new))
+  end
+
+  defp sqrt(_, _, _, new), do: new
+
+  def pow(base, exponent) do
+    base ** exponent
+  end
+
+  def cbcrt(x) do
+    x ** (1 / 3)
+  end
+end
+```
+
+```elixir
+ExUnit.start(auto_run: false)
+
+defmodule HeronMethodTest do
+  use ExUnit.Case, async: false
+
+  describe "Testing the square root function" do
+    test "the square root of 9 is 3.0" do
+      assert HeronMethod.sqrt(9) == 3.0
+    end
+  end
+
+  describe "Testing the power function" do
+    test "3 raised to the power of 2 is 9" do
+      assert HeronMethod.pow(3, 2) == 9
+    end
+  end
+
+  describe "Testing the cubic root function" do
+    test "the cubic root of 27 is 3.0" do
+      assert HeronMethod.cbcrt(27) == 3.0
+    end
+
+    test "the cubic root of 64 is 4.0" do
+      assert_in_delta HeronMethod.cbcrt(64), 4.0, 0.1
+    end
+  end
+end
+
+ExUnit.run()
+```
+
+```elixir
+HeronMethod.sqrt(16)
+```

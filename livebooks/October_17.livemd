@@ -1,0 +1,267 @@
+# October 17th
+
+## Section
+
+```elixir
+defmodule Math do
+  def identity(x) do
+    x
+  end
+
+  def largest(num1, num2) do
+    if num1 > num2 do
+      num1
+    else
+      num2
+    end
+  end
+
+  def smallest(num1, num2) when num1 < num2, do: num1
+  def smallest(_, num2), do: num2
+end
+```
+
+```elixir
+Math.smallest(3000, 3000)
+```
+
+```elixir
+Math.identity(37)
+```
+
+```elixir
+Math.largest(5000, 5000)
+```
+
+```elixir
+defmodule BMI do
+  def bmi(height, weight) do
+    weight / (height * height)
+  end
+end
+```
+
+```elixir
+BMI.bmi(1.55, 55)
+```
+
+## Data Structures
+
+* List
+* Tuple
+
+## Lists
+
+```elixir
+[1, 3, 5]
+```
+
+* Integers
+* Floating point numbers
+* Strings
+* Atoms
+* Booleans
+
+```elixir
+[1, 20.3, "third", :atomic, true]
+```
+
+```elixir
+[69, "string", [1, 20.3, "third", :atomic, true], [1, [9]]]
+```
+
+## Tuples
+
+```elixir
+{1, 3, 5}
+```
+
+## Pattern Matching (=)
+
+```elixir
+x = 5
+```
+
+```elixir
+height = 155
+```
+
+```elixir
+{height, weight} = {159, 56}
+```
+
+```elixir
+height
+```
+
+```elixir
+weight
+```
+
+```elixir
+defmodule Person do
+  def get_name({:name, name}), do: name
+  def get_name({:nome, name}), do: name
+  def get_name({:nombre, name}), do: name
+end
+```
+
+```elixir
+Person.get_name({:name, 12})
+```
+
+```elixir
+Person.get_name({:nome, "Adolfo"})
+```
+
+```elixir
+Person.get_name({:nombre, "Martha"})
+```
+
+```elixir
+defmodule BMI2 do
+  def compute(height, weight) when is_number(height) and is_number(weight) do
+    weight / (height * height)
+  end
+
+  def compute({height, :meters}, {weight, :kilograms}) do
+    weight / (height * height)
+  end
+
+  def compute({height, :centimeters}, {weight, :kilograms}) do
+    compute({height / 100, :meters}, {weight, :kilograms})
+  end
+end
+```
+
+```elixir
+BMI2.compute({1.75, :meters}, {75, :kilograms})
+```
+
+```elixir
+BMI2.compute({175, :centimeters}, {75, :kilograms})
+```
+
+```elixir
+BMI2.compute(1.75, 75)
+```
+
+```elixir
+{:name, name, _, _} = {:name, "Martha", :weight, 55}
+```
+
+## Pattern Matching in Lists
+
+```elixir
+a_list = [1, 3, 5]
+```
+
+```elixir
+head = hd(a_list)
+```
+
+```elixir
+tail = tl(a_list)
+```
+
+```elixir
+head
+```
+
+```elixir
+tail
+```
+
+```elixir
+[head | tail]
+```
+
+```elixir
+[head2 | tail2] = [42, :idontknow, "Tijuana", 156.25658]
+```
+
+```elixir
+head2
+```
+
+```elixir
+tail2
+```
+
+```elixir
+[_ | tail3] = [1, 452, :atom]
+```
+
+```elixir
+tail3
+```
+
+```elixir
+[_, _, 3, game | tail] = [4548.55, 56599, 3, "tic-tac-toe", "jogo da velha", "Dia de Muertos"]
+```
+
+```elixir
+game
+```
+
+```elixir
+tail
+```
+
+```elixir
+defmodule Find do
+  def largest(a_list) when is_list(a_list), do: largest(a_list, 0)
+
+  def largest(_), do: "Wrong argument, please add a list"
+
+  defp largest([], largest_so_far), do: largest_so_far
+
+  defp largest([head | tail], largest_so_far) do
+    if head > largest_so_far do
+      largest(tail, head)
+    else
+      largest(tail, largest_so_far)
+    end
+  end
+end
+```
+
+```elixir
+Find.largest([1, 222, 32])
+```
+
+```elixir
+Find.largest(45)
+```
+
+```elixir
+Find.largest([])
+```
+
+## New version of Find
+
+```elixir
+defmodule Find2 do
+  def largest([head | tail] = a_list) when is_list(a_list), do: largest(tail, head)
+
+  def largest(_), do: {:error, "Wrong argument, please add a list"}
+
+  defp largest([], largest_so_far), do: largest_so_far
+
+  defp largest([head | tail], largest_so_far) do
+    if head > largest_so_far do
+      largest(tail, head)
+    else
+      largest(tail, largest_so_far)
+    end
+  end
+end
+```
+
+```elixir
+Find2.largest([-12, -888, -127, -54])
+```
+
+```elixir
+Find2.largest([])
+```

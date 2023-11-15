@@ -1,0 +1,47 @@
+# For, Map and Reduce in Elixir
+
+## Section
+
+```elixir
+for i <- 1..10 do
+  i * 10
+end
+```
+
+```elixir
+1..10
+|> Enum.map(fn x -> x * 10 end)
+```
+
+```elixir
+1..10
+|> Enum.map(fn x -> x * 10 end)
+|> Enum.sum()
+```
+
+```elixir
+1..10
+|> Enum.reduce(fn x, accum -> x * 10 + accum end)
+```
+
+```elixir
+1..10
+|> Enum.reduce(1, fn x, accum -> x * 10 * accum end)
+```
+
+```elixir
+for i <- 1..3, j <- ["Mexico", "Brasil", "United States"] do
+  {:number, i, :country, j}
+end
+```
+
+```elixir
+require Integer
+
+for i <- 1..3,
+    j <- ["Mexico", "Brasil", "United States"],
+    Integer.is_even(i),
+    String.starts_with?(j, "M") do
+  {:number, i, :country, j}
+end
+```
