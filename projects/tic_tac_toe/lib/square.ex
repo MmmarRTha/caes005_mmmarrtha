@@ -1,11 +1,11 @@
-defmodule Board do
-  @enforce_keys [:row, :col]
-  defstruct [:row, :col]
+defmodule Square do
+  @enforce_keys [:col, :row]
+  defstruct [:col, :row]
 
   @board_size 1..3
 
   def new(col, row) when col in @board_size and row in @board_size do
-    {:ok, %Board{row: row, col: col}}
+    {:ok, %Square{col: col, row: row}}
   end
 
   def new(_col, _row), do: {:error, :invalid_position}
@@ -15,6 +15,6 @@ defmodule Board do
   end
 
   def boards do
-    for c <- @board_size, r <- @board_size, into: MapSet.new(), do: %Board{col: c, row: r}
+    for c <- @board_size, r <- @board_size, into: MapSet.new(), do: %Square{col: c, row: r}
   end
 end

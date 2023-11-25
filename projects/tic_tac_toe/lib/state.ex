@@ -2,11 +2,10 @@ defmodule State do
   @players [:x, :o]
 
   # statutes are :initial, choose_pl, playing, game_over, winner_reported
-
   defstruct status: :initial,
             turn: nil,
             winner: nil,
-            board: Board.new_board(),
+            board: Square.new_board(),
             ui: nil
 
   def new(), do: {:ok, %State{}}
