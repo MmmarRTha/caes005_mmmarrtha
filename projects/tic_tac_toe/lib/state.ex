@@ -11,7 +11,7 @@ defmodule State do
   def new(), do: {:ok, %State{}}
   def new(ui), do: {:ok, %State{ui: ui}}
 
-  def event(%State{status: :initial} = state, {:choose_pl, player}) do
+  def event(%State{status: :initial} = state, {:choose_p1, player}) do
     case TicTacToe.check_player(player) do
       {:ok, p} -> {:ok, %State{state | status: :playing, turn: p}}
       _ -> {:error, :invalid_player}
