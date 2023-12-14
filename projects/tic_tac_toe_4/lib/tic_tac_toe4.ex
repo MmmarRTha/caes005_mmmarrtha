@@ -41,19 +41,19 @@ defmodule TicTacToe4 do
   def player_mark(1), do: "X"
   def player_mark(2), do: "O"
 
-  @spec winner?(list) :: {String.t() | nil, boolean()}
-  def winner?([m, _, _, _, m, _, _, _, m, _, _, _, m, _, _, _]) when m != @empty, do: {m, true}
-  def winner?([_, m, _, _, _, m, _, _, _, m, _, _, _, m, _, _]) when m != @empty, do: {m, true}
-  def winner?([_, _, m, _, _, _, m, _, m, _, _, _, m, _, _, _]) when m != @empty, do: {m, true}
-  def winner?([_, _, _, m, _, _, _, m, _, _, _, m, _, _, _, m]) when m != @empty, do: {m, true}
-  def winner?([m, m, m, m, _, _, _, _, _, _, _, _, _, _, _, _]) when m != @empty, do: {m, true}
-  def winner?([_, _, _, _, m, m, m, m, _, _, _, _, _, _, _, _]) when m != @empty, do: {m, true}
-  def winner?([_, _, _, _, _, _, _, _, m, m, m, m, _, _, _, _]) when m != @empty, do: {m, true}
-  def winner?([_, _, _, _, _, _, _, _, _, _, _, _, m, m, m, m]) when m != @empty, do: {m, true}
-  def winner?([m, _, _, _, _, _, _, m, m, _, _, _, _, _, _, m]) when m != @empty, do: {m, true}
-  def winner?([_, _, _, m, _, _, m, _, _, m, _, _, m, _, _, _]) when m != @empty, do: {m, true}
+  @spec finish?(list) :: {String.t() | nil, boolean()}
+  def finish?([m, _, _, _, m, _, _, _, m, _, _, _, m, _, _, _]) when m != @empty, do: {m, true}
+  def finish?([_, m, _, _, _, m, _, _, _, m, _, _, _, m, _, _]) when m != @empty, do: {m, true}
+  def finish?([_, _, m, _, _, _, m, _, m, _, _, _, m, _, _, _]) when m != @empty, do: {m, true}
+  def finish?([_, _, _, m, _, _, _, m, _, _, _, m, _, _, _, m]) when m != @empty, do: {m, true}
+  def finish?([m, m, m, m, _, _, _, _, _, _, _, _, _, _, _, _]) when m != @empty, do: {m, true}
+  def finish?([_, _, _, _, m, m, m, m, _, _, _, _, _, _, _, _]) when m != @empty, do: {m, true}
+  def finish?([_, _, _, _, _, _, _, _, m, m, m, m, _, _, _, _]) when m != @empty, do: {m, true}
+  def finish?([_, _, _, _, _, _, _, _, _, _, _, _, m, m, m, m]) when m != @empty, do: {m, true}
+  def finish?([m, _, _, _, _, _, _, m, m, _, _, _, _, _, _, m]) when m != @empty, do: {m, true}
+  def finish?([_, _, _, m, _, _, m, _, _, m, _, _, m, _, _, _]) when m != @empty, do: {m, true}
 
-  def winner?(list) do
+  def finish?(list) do
     {nil, not Enum.any?(list, fn s -> s == @empty end)}
   end
 
