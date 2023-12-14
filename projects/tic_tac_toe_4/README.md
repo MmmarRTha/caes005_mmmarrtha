@@ -5,5 +5,4 @@ This is a Tic-Tac-Toe 04 in a row game where users play against computer or rand
 ```elixir
 $ mix start
 ```
-
-
+Just follow the instruccions given to play.
