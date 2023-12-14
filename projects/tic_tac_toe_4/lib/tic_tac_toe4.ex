@@ -21,9 +21,12 @@ defmodule TicTacToe4 do
     Enum.at(grid, position(row, col)) == @empty
   end
 
-  defp position(row, col), do: (row - 1) * 4 + col - 1
+  defp position(row, col) do
+    (row - 1) * 4 + (col - 1)
+  end
 
-  defp row_col_position(position) when position in 0..13 do
+  defp row_col_position(position) when position in 0..15 do
+    # IO.inspect(position)
     {div(position, 4) + 1, rem(position, 4) + 1}
   end
 

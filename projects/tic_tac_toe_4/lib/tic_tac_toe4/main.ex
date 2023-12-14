@@ -26,7 +26,7 @@ defmodule TicTacToe4.CLI.Main do
     if random do
       :rand.seed(:exsss)
     else
-      :rand.seed(:exsss, {100, 101, 102, 103})
+      :rand.seed(:exsss, {100, 101, 102})
     end
 
     keep_playing(TicTacToe4.new_grid())
@@ -62,10 +62,10 @@ defmodule TicTacToe4.CLI.Main do
 
   defp show_grid([m1, m2, m3, m4, m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34]) do
     Shell.info("Current grid:")
-    Shell.info("1 #{m1} #{m2} #{m3} #{m4}")
-    Shell.info("2 #{m11} #{m12} #{m13} #{m14}")
-    Shell.info("3 #{m21} #{m22} #{m23} #{m24}")
-    Shell.info("4 #{m31} #{m32} #{m33} #{m34}")
+    Shell.info("#{m1} #{m2} #{m3} #{m4}")
+    Shell.info("#{m11} #{m12} #{m13} #{m14}")
+    Shell.info("#{m21} #{m22} #{m23} #{m24}")
+    Shell.info("#{m31} #{m32} #{m33} #{m34}")
     Shell.info("")
   end
 
@@ -89,8 +89,8 @@ defmodule TicTacToe4.CLI.Main do
         end
       end
     else
-        Shell.info("Invalid move!")
-        keep_playing(grid)
+      Shell.info("Invalid move!")
+      keep_playing(grid)
     end
   end
 
