@@ -1,21 +1,9 @@
 # TicTacToe4
+This is a Tic-Tac-Toe 04 in a row game where users play against computer or randomly.
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `tic_tac_toe_4` to your list of dependencies in `mix.exs`:
-
+###To run the game in a Command Line Interface:
 ```elixir
-def deps do
-  [
-    {:tic_tac_toe_4, "~> 0.1.0"}
-  ]
-end
+$ mix start
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/tic_tac_toe_4>.
 
